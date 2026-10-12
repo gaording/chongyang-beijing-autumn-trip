@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>北京重阳赏秋出游选项</title>
+  <style>
+    :root { --ink:#26352d; --muted:#6d786f; --paper:#fbf7ee; --gold:#c88a24; --rust:#a74723; --pine:#1f5b46; }
+    * { box-sizing:border-box; }
+    body { margin:0; color:var(--ink); font-family:"PingFang SC","Microsoft YaHei",system-ui,sans-serif; background:linear-gradient(135deg,#f3e3bd,#e9f0df 55%,#d2e4db); }
+    .page { max-width:1120px; margin:auto; padding:30px 22px 52px; }
+    .hero { position:relative; overflow:hidden; padding:56px 44px; border-radius:28px; color:#fffaf0; background:linear-gradient(120deg,#254b3b,#526b31 52%,#b56125); box-shadow:0 20px 50px #5f4a2829; }
+    .hero:after { content:"✦  ✦  ✦"; position:absolute; right:2rem; bottom:-1.4rem; font-family:serif; font-size:9rem; opacity:.13; transform:rotate(-12deg); }
+    .eyebrow { margin:0 0 14px; color:#f7d98d; letter-spacing:.15em; font-size:.8rem; font-weight:700; }
+    h1 { max-width:680px; margin:0; font-family:Georgia,"Songti SC",serif; font-size:clamp(2.3rem,6vw,4.7rem); line-height:1.05; letter-spacing:.03em; }
+    .subtitle { max-width:580px; margin:20px 0 0; font-size:1.05rem; line-height:1.8; opacity:.92; }
+    .date { display:inline-flex; gap:10px; align-items:center; margin-top:28px; padding:10px 14px; border:1px solid #ffffff59; border-radius:99px; background:#ffffff18; font-weight:700; }
+    .intro { display:grid; grid-template-columns:1.2fr .8fr; gap:22px; margin:26px 0; }
+    .note, .filters, .route, .tips { padding:24px; border:1px solid #fffdf7; border-radius:20px; background:#fffdf8cc; box-shadow:0 8px 22px #6d563113; }
+    h2 { margin:0 0 12px; font-size:1.32rem; }
+    p { line-height:1.75; }
+    .note p { margin:0; color:var(--muted); }
+    .filters label { display:block; margin:12px 0 8px; color:var(--muted); font-size:.86rem; font-weight:700; }
+    select { width:100%; padding:11px; color:var(--ink); border:1px solid #d7cdb8; border-radius:10px; background:#fffdf8; font:inherit; }
+    .grid { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+    .card { display:flex; flex-direction:column; min-height:280px; padding:23px; border-radius:20px; background:var(--paper); box-shadow:0 10px 24px #5b4c3012; border-top:5px solid var(--accent); transition:transform .18s, opacity .18s; }
+    .card:hover { transform:translateY(-4px); }
+    .card.hide { display:none; }
+    .badge { color:var(--accent); font-size:.78rem; font-weight:800; letter-spacing:.08em; }
+    .card h3 { margin:12px 0 7px; font-size:1.45rem; }
+    .meta { margin:0; color:var(--muted); font-size:.88rem; }
+    .card p { flex:1; margin:14px 0; font-size:.94rem; }
+    .tag { display:inline-block; margin:3px 3px 0 0; padding:5px 8px; border-radius:7px; color:#526052; background:#e7eee0; font-size:.75rem; }
+    .route { margin-top:26px; background:linear-gradient(115deg,#fff9e9,#eef4e5); }
+    .timeline { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-top:18px; }
+    .step { padding:13px; border-left:3px solid var(--gold); background:#ffffff9e; }
+    .step strong { display:block; margin-bottom:6px; color:var(--rust); font-size:.85rem; }
+    .step span { font-size:.9rem; line-height:1.5; }
+    .tips { margin-top:22px; background:#f9fbf5cc; }
+    .tips ul { margin:8px 0 0; padding-left:1.2em; line-height:1.9; color:var(--muted); }
+    footer { margin-top:25px; color:#687167; font-size:.8rem; text-align:center; }
+    @media (max-width:760px) { .hero { padding:38px 27px; } .intro,.grid { grid-template-columns:1fr; } .timeline { grid-template-columns:1fr 1fr; } }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero">
+      <p class="eyebrow">BEIJING · AUTUMN OUTING</p>
+      <h1>重阳登高，<br>把北京的秋天走一遍</h1>
+      <p class="subtitle">一份为 2026 年重阳节准备的北京赏秋选择单。选一处山色，也选一段适合陪伴家人的慢时光。</p>
+      <div class="date">🍂 2026 年 10 月 18 日 · 星期日 · 农历九月初九</div>
+    </section>
+
+    <section class="intro">
+      <div class="note"><h2>怎么挑？</h2><p>想看最浓的红叶，优先去西山或远郊长城；带长辈同行则选坡度平缓、配套更完善的城内公园。北京秋色通常由山区先起、向城区延展，出发前建议再看当天景区公告和天气。</p></div>
+      <div class="filters"><h2>快速筛选</h2><label for="pace">同行节奏</label><select id="pace"><option value="all">全部选项</option><option value="easy">轻松漫步</option><option value="hike">登高徒步</option></select><label for="distance">出行距离</label><select id="distance"><option value="all">不限距离</option><option value="city">城内 / 近郊</option><option value="far">远郊一日</option></select></div>
+    </section>
+
+    <section class="grid" id="cards">
+      <article class="card" data-pace="hike" data-distance="city" style="--accent:#ad4c28"><span class="badge">经典首选</span><h3>香山公园</h3><p class="meta">西山 · 红叶与登高</p><p>黄栌与枫叶是主角。可走勤政殿—静翠湖—香炉峰一线；若带长辈，建议只在山脚和中段赏景，体验已足够丰盛。</p><div><span class="tag">10月下旬更稳</span><span class="tag">人流较大</span></div></article>
+      <article class="card" data-pace="easy" data-distance="city" style="--accent:#bf882d"><span class="badge">适合陪伴</span><h3>奥林匹克森林公园</h3><p class="meta">北中轴 · 彩叶与水景</p><p>路面平整、空间开阔，适合推婴儿车或与长辈慢走。午后沿仰山、奥海一带散步，秋色与城市天际线同框。</p><div><span class="tag">轻松平缓</span><span class="tag">地铁方便</span></div></article>
+      <article class="card" data-pace="hike" data-distance="far" style="--accent:#3b6a55"><span class="badge">长城秋景</span><h3>慕田峪长城</h3><p class="meta">怀柔 · 山林与烽火台</p><p>缆车上下能显著降低体力门槛；在高处看层林与城墙蜿蜒，是重阳“登高”最有仪式感的一种打开方式。</p><div><span class="tag">建议早出发</span><span class="tag">可乘缆车</span></div></article>
+      <article class="card" data-pace="hike" data-distance="far" style="--accent:#a34227"><span class="badge">红叶密度高</span><h3>坡峰岭</h3><p class="meta">房山 · 山地红叶</p><p>山谷色彩浓烈，适合想专程拍红叶的人。台阶和坡道较多，建议穿防滑鞋，并给返程预留充足时间。</p><div><span class="tag">适合拍照</span><span class="tag">需一定体力</span></div></article>
+      <article class="card" data-pace="easy" data-distance="city" style="--accent:#d29a20"><span class="badge">银杏慢游</span><h3>地坛公园</h3><p class="meta">东城 · 古建与银杏</p><p>古柏、红墙与银杏相衬，节奏从容。适合先在园中散步，再到安定门一带吃一顿热乎的北京菜。</p><div><span class="tag">古都气氛</span><span class="tag">半日可成行</span></div></article>
+      <article class="card" data-pace="easy" data-distance="far" style="--accent:#4f7b66"><span class="badge">人少景阔</span><h3>城市绿心森林公园</h3><p class="meta">通州 · 彩叶大道</p><p>适合避开热门山景区的人群。开阔林地和长距离步道，适合骑行、野餐或全家慢走看一整片秋色。</p><div><span class="tag">视野开阔</span><span class="tag">适合亲子</span></div></article>
+    </section>
+
+    <section class="route"><h2>不赶路的重阳一日推荐 · 香山轻登高</h2><div class="timeline"><div class="step"><strong>09:00</strong><span>抵达东门，先避开入园高峰。</span></div><div class="step"><strong>10:00</strong><span>勤政殿、静翠湖一带慢赏秋色。</span></div><div class="step"><strong>12:00</strong><span>山下用餐、休息；长辈同行不必登顶。</span></div><div class="step"><strong>14:00</strong><span>择一段缓坡走走，下午早些返程。</span></div></div></section>
+    <section class="tips"><h2>出发前的三件小事</h2><ul><li>确认是否需要预约、是否有接驳或临时交通管制。</li><li>山区昼夜温差明显：带一件防风外套、水和小零食。</li><li>重阳节热门景区人多，若看重安静，优先选择城内公园或工作日错峰。</li></ul></section>
+    <footer>愿岁岁重阳，山高路远，都有人陪你慢慢看。</footer>
+  </main>
+  <script>
+    const selects = [...document.querySelectorAll('select')];
+    const cards = [...document.querySelectorAll('.card')];
+    function filter() { const [pace, distance] = selects.map(s => s.value); cards.forEach(c => c.classList.toggle('hide', (pace !== 'all' && c.dataset.pace !== pace) || (distance !== 'all' && c.dataset.distance !== distance))); }
+    selects.forEach(s => s.addEventListener('change', filter));
+  </script>
+</body>
+</html>
